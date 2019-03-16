@@ -6,9 +6,7 @@ using Cinemachine;
 public class XboxController : MonoBehaviour
 {
 
-    public bool olafSelected = false;
-    public bool erikSelected = false;
-    public bool baleogSelected = false;
+    public bool thisIsSelected = false;
 
     public bool isGrounded;
     public bool canClimb;
@@ -30,10 +28,7 @@ public class XboxController : MonoBehaviour
     public float speed;
 
     [SerializeField]
-    private int index = 0;
-
-    [Range(0, 1), SerializeField]
-    private float speedValue = 0.5f;
+    private int index;
 
     private Rigidbody2D rb;
 
@@ -43,16 +38,20 @@ public class XboxController : MonoBehaviour
     //   1 = Erik
     //   2 = Baleog
 
-
     // Start
     void Start()
     {
-            olafSelected = true;
-            erikSelected = false;
-            baleogSelected = false;
-
         rb = this.GetComponent<Rigidbody2D>();     
     }
+
+    /*
+     * 
+     * 
+     * FAIRE EN SORTE QU'ON NE PUISSE PAS S'ARRÊTER DANS LES AIRS
+     * 
+     * 
+     */
+
 
     // Update
     void Update()
@@ -69,37 +68,18 @@ public class XboxController : MonoBehaviour
 
     public void Selection()
     {
-        if (Input.GetKeyDown("joystick 1 button 3") && charactersList.Count > 1)
+        if (this.gameObject.tag == controllerScriptList[index].gameObject.tag)
         {
+            this.thisIsSelected = true;
+        }
+        else
+        {
+            this.thisIsSelected = false;
+        }
 
-            if (index >= charactersList.Count - 1)
-            {
-                index = 0;
-            }
-            else
-            {
-                index++;
-            }
-
-            if (charactersList[index].tag == "Olaf")
-            {
-                olafSelected = true;
-                erikSelected = false;
-                baleogSelected = false;
-
-            }
-            else if (charactersList[index].tag == "Erik")
-            {
-                olafSelected = false;
-                erikSelected = true;
-                baleogSelected = false;
-            }
-            else if (charactersList[index].tag == "Baleog")
-            {
-                olafSelected = false;
-                erikSelected = false;
-                baleogSelected = true;
-            }
+        if (Input.GetKeyDown("joystick 1 button 3") && charactersList.Count > 1 && this.gameObject.tag == charactersList[index].tag)
+        {
+            StartCoroutine("SelectionCoroutine");
         }
     }
 
@@ -124,7 +104,6 @@ public class XboxController : MonoBehaviour
         Gizmos.DrawCube(transform.position - new Vector3(0, offsetBox, 0), new Vector2(overlapBoxX, overlapBoxY));
     }
 
-
     public void MovingSystem()
     {
         float xAxis = Input.GetAxis("Horizontal");
@@ -143,7 +122,7 @@ public class XboxController : MonoBehaviour
         }
         
         //Est-ce que ce personnage est au sol ?
-        if(this.isGrounded == true)
+        if(this.isGrounded == true && this.thisIsSelected == true)
         {
             //Si je n'ai pas atteint le bout de la liste, je regarde si le prochain personnage (avec qui on va swap) est au sol aussi ?
             if(index < controllerScriptList.Count - 1)
@@ -154,82 +133,35 @@ public class XboxController : MonoBehaviour
                 }
             }
             //Pour éviter un OutOfBoundsException, si j'ai atteint le bout de la liste je teste la valeur 0 (qui suit la dernière valeur pour faire une boucle). Je teste donc si le premier personnage est au sol.
-            else if (index == controllerScriptList.Count) 
+            else if (index == controllerScriptList.Count - 1) 
             {
                 if(controllerScriptList[0].isGrounded == true)
                 {
                     StartCoroutine("BodyTypeChanger");
                 }
             }
-
-            ////////////////////////////////////////////////////////////////////////// Si je joue OLAF et que son BodyType l'autorise à bouger
-            if (olafSelected == true && rb.bodyType == RigidbodyType2D.Dynamic)
+        }
+        //Autoriser le personnage sélectionné à bouger.
+        if (thisIsSelected == true && rb.bodyType == RigidbodyType2D.Dynamic)
+        {
+            if (xAxis > 0.3) //Aller à droite
             {
-                if (xAxis > 0.3) //Aller à droite avec OLAF
-                {
-                    this.transform.Translate(Vector3.right * speed * Time.deltaTime);
-                }
-
-                if (xAxis < -0.3) //Aller à gauche avec OLAF
-                {
-                    this.transform.Translate(-Vector3.right * speed * Time.deltaTime);
-                }
-
-                if (yAxis < -0.3 && canClimb == true)
-                {
-                    this.transform.Translate(-Vector3.up * speed * Time.deltaTime);
-                }
-
-                if (yAxis > 0.3 && canClimb == true)
-                {
-                    this.transform.Translate(Vector3.up * speed * Time.deltaTime);
-                }
+                this.transform.Translate(Vector3.right * speed * Time.deltaTime);
             }
-            ////////////////////////////////////////////////////////////////////////// Si je joue ERIK et que son BodyType l'autorise à bouger
-            else if (erikSelected == true && rb.bodyType == RigidbodyType2D.Dynamic)
+
+            if (xAxis < -0.3) //Aller à gauche
             {
-                if (xAxis > 0.3) //Aller à droite avec ERIK
-                {
-                    this.transform.Translate(Vector3.right * speed * Time.deltaTime);
-                }
-
-                if (xAxis < -0.3) //Aller à gauche avec ERIK
-                {
-                    this.transform.Translate(-Vector3.right * speed * Time.deltaTime);
-                }
-
-                if (yAxis < -0.3 && canClimb == true)
-                {
-                    this.transform.Translate(-Vector3.up * speed * Time.deltaTime);
-                }
-
-                if (yAxis > 0.3 && canClimb == true)
-                {
-                    this.transform.Translate(Vector3.up * speed * Time.deltaTime);
-                }
+                this.transform.Translate(-Vector3.right * speed * Time.deltaTime);
             }
-            ////////////////////////////////////////////////////////////////////////// Si je joue BALEOG et que son BodyType l'autorise à bouger
-            else if (baleogSelected == true && rb.bodyType == RigidbodyType2D.Dynamic)
+
+            if (yAxis < -0.3 && canClimb == true) //Descendre à l'échelle si cela est autorisé
             {
-                if (xAxis > 0.3) //Aller à droite avec BALEOG
-                {
-                    this.transform.Translate(Vector3.right * speed * Time.deltaTime);
-                }
+                this.transform.Translate(-Vector3.up * speed * Time.deltaTime);
+            }
 
-                if (xAxis < -0.3) //Aller à gauche avec BALEOG
-                {
-                    this.transform.Translate(-Vector3.right * speed * Time.deltaTime);
-                }
-
-                if (yAxis < -0.3 && canClimb == true)
-                {
-                    this.transform.Translate(-Vector3.up * speed * Time.deltaTime);
-                }
-
-                if (yAxis > 0.3 && canClimb == true)
-                {
-                    this.transform.Translate(Vector3.up * speed * Time.deltaTime);
-                }
+            if (yAxis > 0.3 && canClimb == true) //Monter à l'échelle si cela est autorisé
+            {
+                this.transform.Translate(Vector3.up * speed * Time.deltaTime);
             }
         }
     }
@@ -252,7 +184,28 @@ public class XboxController : MonoBehaviour
         }
     }
 
+    IEnumerator SelectionCoroutine()
+    {
+        yield return new WaitForSeconds(0.1f);
 
-    // POUR FAIRE LES DÉPLACEMENTS AVEC DES FORCES :     //rb.AddForce(transform.right * speedValue, ForceMode2D.Impulse);
+        if (index >= charactersList.Count - 1)
+        {
+            for(int i = 0; i < controllerScriptList.Count; i++)
+            {
+                Debug.Log("Index set to 0");
+                controllerScriptList[i].index = 0;                
+            }
+        }
+        else
+        {
+            for (int i = 0; i < controllerScriptList.Count; i++)
+            {
+                Debug.Log("Index set to ++");
+                controllerScriptList[i].index++;
+            }
+        }
+    }
+
+    // POUR FAIRE LES DÉPLACEMENTS AVEC DES FORCES :     //rb.AddForce(transform.right * speed (entre 0 et 1) , ForceMode2D.Impulse);
 
 }
