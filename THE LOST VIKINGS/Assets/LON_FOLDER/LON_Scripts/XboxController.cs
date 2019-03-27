@@ -27,8 +27,8 @@ public class XboxController : MonoBehaviour
 
     public float speed;
 
-    [SerializeField]
-    private int index;
+   
+    public int index;
 
     private Rigidbody2D rb;
 
@@ -77,7 +77,7 @@ public class XboxController : MonoBehaviour
             this.thisIsSelected = false;
         }
 
-        if (Input.GetKeyDown("joystick 1 button 3") && charactersList.Count > 1 && this.gameObject.tag == charactersList[index].tag)
+        if ((Input.GetKeyDown("joystick 1 button 3") || Input.GetKeyDown("space") ) && charactersList.Count > 1 && this.gameObject.tag == charactersList[index].tag)
         {
             StartCoroutine("SelectionCoroutine");
         }
