@@ -11,6 +11,8 @@ public class XboxController : MonoBehaviour
     public bool isGrounded;
     public bool canClimb;
 
+    public int hp = 100;
+
     public List<CinemachineVirtualCamera> cameraList = new List<CinemachineVirtualCamera>();
     public List<Rigidbody2D> rbList = new List<Rigidbody2D>();
     public List<GameObject> charactersList = new List<GameObject>();
@@ -77,7 +79,7 @@ public class XboxController : MonoBehaviour
             this.thisIsSelected = false;
         }
 
-        if (Input.GetKeyDown("joystick 1 button 3") && charactersList.Count > 1 && this.gameObject.tag == charactersList[index].tag)
+        if (Input.GetKeyDown("joystick 1 button 3") && charactersList.Count > 1 && this.gameObject.tag == charactersList[index].tag && this.isGrounded == true)
         {
             StartCoroutine("SelectionCoroutine");
         }
