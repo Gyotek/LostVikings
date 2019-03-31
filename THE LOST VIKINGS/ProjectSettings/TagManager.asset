@@ -7,6 +7,7 @@ TagManager:
   - Olaf
   - Erik
   - Baleog
+  - Enemy
   layers:
   - Default
   - TransparentFX

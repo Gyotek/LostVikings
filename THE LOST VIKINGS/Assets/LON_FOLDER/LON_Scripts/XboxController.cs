@@ -29,8 +29,8 @@ public class XboxController : MonoBehaviour
 
     public float speed;
 
-    [SerializeField]
-    private int index;
+   
+    public int index;
 
     private Rigidbody2D rb;
 
