@@ -25,6 +25,8 @@ public class XboxController : MonoBehaviour
     public float overlapBoxY;
     public float offsetBox;
 
+    public float xJoystick;
+
     public LayerMask isGroundedLayer;
 
     public float speed;
@@ -60,6 +62,7 @@ public class XboxController : MonoBehaviour
     {
         Selection();
         CameraFocus();
+        xJoystick = Input.GetAxis("Horizontal");
     }
 
     // Fixed Update

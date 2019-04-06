@@ -8,6 +8,7 @@ TagManager:
   - Erik
   - Baleog
   - Enemy
+  - Waypoint
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,6 @@ TagManager:
   - Ground
   - Projectile
   - Shield
-  - 
   - 
   - 
   - 

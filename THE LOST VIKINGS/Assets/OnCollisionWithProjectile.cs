@@ -28,7 +28,7 @@ public class OnCollisionWithProjectile : MonoBehaviour
 
     IEnumerator DyingDelay()
     {
-        yield return new WaitForSeconds(myShooter.dyingDelayValue);
+        yield return new WaitForSeconds(myShooter.projectiletDyingDelay);
 
         if(this.gameObject.name != "Projectile")
         {
