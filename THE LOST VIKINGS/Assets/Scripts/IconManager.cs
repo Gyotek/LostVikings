@@ -7,8 +7,6 @@ public class IconManager : MonoBehaviour
 {
     public Image[] icones;
 
-    public InventorySystem myInventory;
-
     public Sprite icon;
     Image myImage;
     private SpriteRenderer theRenderer;
@@ -23,7 +21,6 @@ public class IconManager : MonoBehaviour
     public Image imageBlank;
 
     private int iconeSelectNum;
-    private Image iconeSelect;
 
     private string iconeSelectName;
 
@@ -32,13 +29,16 @@ public class IconManager : MonoBehaviour
     {
         num = 0;
         iconName = "Icon"+num;
-        _InventorySystem = GameObject.Find("Joueur").GetComponent<InventorySystem>();
         blank = imageBlank.sprite;
         iconeSelectNum = 0;
     }
 
     public void Update()
     {
+
+        iconeSelectNum = Mathf.Clamp(iconeSelectNum, 0, 3);
+        Debug.Log("iconeSelectNum = " + iconeSelectNum);
+
         if (_InventorySystem.myCollision == true)
         {
             iconName = "Icon" + num;
@@ -47,20 +47,17 @@ public class IconManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("espace");
-            icones[iconeSelectNum] = imageBlank;
-            imageBlank = iconeSelect.GetComponent<Image>();
+            imageBlank = icones[iconeSelectNum];
+            imageBlank.sprite = blank;
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             iconeSelectNum -= 1;
-            Debug.Log("iconeSelectNum = " + iconeSelectNum);
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             iconeSelectNum += 1;
-            Debug.Log("iconeSelectNum = " + iconeSelectNum);
         }
     }
 
@@ -72,7 +69,6 @@ public class IconManager : MonoBehaviour
         myImage.sprite = icon;
         icones[num] = myImage;
         num = num + 1;
-        Debug.Log(num);
 
         /*foreach (GameObject objet in myInventory.inventaire)
         {
