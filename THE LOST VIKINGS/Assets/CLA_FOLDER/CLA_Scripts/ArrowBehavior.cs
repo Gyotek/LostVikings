@@ -36,7 +36,7 @@ public class ArrowBehavior : MonoBehaviour
         yield return new WaitForSeconds(destroyCoolDown);
         Destroy(gameObject);
     }
-
+    /*
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
@@ -52,5 +52,5 @@ public class ArrowBehavior : MonoBehaviour
             //ButtonBehavior button = collision.gameObject.GetComponent<ButtonBehavior>();
             //button.triggerButton();
         }
-    }
+    }*/
 }

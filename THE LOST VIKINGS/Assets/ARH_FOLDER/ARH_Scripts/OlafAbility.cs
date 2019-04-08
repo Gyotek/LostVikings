@@ -16,21 +16,28 @@ public class OlafAbility : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (animShield.GetCurrentAnimatorStateInfo(0).IsName("ShieldUpEnded") && Physics2D.GetIgnoreLayerCollision(8, 10) == true)
+
+        if (FindObjectOfType<XboxController>().index == 0)
         {
-            Debug.Log(animShield.GetCurrentAnimatorStateInfo(0));
-            Physics2D.IgnoreLayerCollision(8, 10, false);
+
+            if (animShield.GetCurrentAnimatorStateInfo(0).IsName("ShieldUpEnded") && Physics2D.GetIgnoreLayerCollision(8, 10) == true)
+            {
+                Debug.Log(animShield.GetCurrentAnimatorStateInfo(0));
+                Physics2D.IgnoreLayerCollision(8, 10, false);
+            }
+
+            animShield.SetBool("shieldIsUp", shieldIsUp);
+            if (Input.GetKeyDown("joystick 1 button 2") && !shieldIsUp)
+            {
+                shieldIsUp = true;
+            }
+            else if (Input.GetKeyDown("joystick 1 button 2") && shieldIsUp)
+            {
+                shieldIsUp = false;
+                Physics2D.IgnoreLayerCollision(8, 10, true);
+            }
+
         }
 
-        animShield.SetBool("shieldIsUp", shieldIsUp);
-        if (Input.GetKeyDown("joystick 1 button 2") && !shieldIsUp)
-        {
-            shieldIsUp = true;
-        }
-        else if (Input.GetKeyDown("joystick 1 button 2") && shieldIsUp)
-        {
-            shieldIsUp = false;
-            Physics2D.IgnoreLayerCollision(8, 10, true);
-        }
     }
 }
