@@ -9,6 +9,8 @@ TagManager:
   - Baleog
   - Enemy
   - Waypoint
+  - Object
+  - Fleche
   layers:
   - Default
   - TransparentFX

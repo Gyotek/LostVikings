@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class InventorySystem : MonoBehaviour
 {
-    public List<GameObject> inventaire = new List<GameObject>();
-
     public bool myCollision;
 
     public GameObject objetInventaire;
