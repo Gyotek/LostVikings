@@ -2941,6 +2941,7 @@ GameObject:
   - component: {fileID: 1003914204}
   - component: {fileID: 1003914203}
   - component: {fileID: 1003914208}
+  - component: {fileID: 1003914210}
   m_Layer: 8
   m_Name: Baleog l'archer
   m_TagString: Baleog
@@ -3131,6 +3132,22 @@ MonoBehaviour:
   myCollision: 0
   objetInventaire: {fileID: 0}
   objectCounter: 0
+--- !u!114 &1003914210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003914202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19653ceab9743474587f58526b61f127, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisPosition: {x: 0, y: 0, z: 0}
+  arrow: {fileID: 0}
+  arrowCoolDown: 1.5
+  canShoot: 1
 --- !u!1 &1041273342
 GameObject:
   m_ObjectHideFlags: 0

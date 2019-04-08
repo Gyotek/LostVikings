@@ -9,14 +9,14 @@ public class EnemyBehavior : MonoBehaviour
     private int hp = 3;
 
     [SerializeField]
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D rigidBody;
 
     [SerializeField]
     private int thrust = 5;
 
     private void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public void LoseHP (int hpToLose)
     {
-        rigidbody.AddForce(transform.up * thrust);
+        rigidBody.AddForce(transform.up * thrust);
         hp -= hpToLose;
     }
 }
