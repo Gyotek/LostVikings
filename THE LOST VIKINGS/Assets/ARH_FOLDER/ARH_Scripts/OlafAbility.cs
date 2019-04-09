@@ -10,6 +10,7 @@ public class OlafAbility : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Physics2D.IgnoreLayerCollision(8, 11, true);
         animShield = GetComponent<Animator>();
     }
 
@@ -19,22 +20,24 @@ public class OlafAbility : MonoBehaviour
 
         if (FindObjectOfType<XboxController>().index == 0)
         {
-
-            if (animShield.GetCurrentAnimatorStateInfo(0).IsName("ShieldUpEnded") && Physics2D.GetIgnoreLayerCollision(8, 10) == true)
-            {
-                Debug.Log(animShield.GetCurrentAnimatorStateInfo(0));
-                Physics2D.IgnoreLayerCollision(8, 10, false);
-            }
+            /*if (animShield.GetCurrentAnimatorStateInfo(0).IsName("ShieldUpEnded") && Physics2D.GetIgnoreLayerCollision(8, 11) == true)
+             {
+                Debug.Log("Ignore collision false");
+                Physics2D.IgnoreLayerCollision(8, 11, false);
+            }*/
 
             animShield.SetBool("shieldIsUp", shieldIsUp);
             if (Input.GetKeyDown("joystick 1 button 2") && !shieldIsUp)
             {
                 shieldIsUp = true;
+
+                Physics2D.IgnoreLayerCollision(8, 11, false);
             }
             else if (Input.GetKeyDown("joystick 1 button 2") && shieldIsUp)
             {
                 shieldIsUp = false;
-                Physics2D.IgnoreLayerCollision(8, 10, true);
+                Debug.Log("Ignore collision true");
+                Physics2D.IgnoreLayerCollision(8, 11);
             }
 
         }

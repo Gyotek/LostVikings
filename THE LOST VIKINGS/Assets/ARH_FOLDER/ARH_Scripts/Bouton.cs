@@ -12,7 +12,7 @@ public class Bouton : MonoBehaviour
     {
     }
 
-    private void OnCollisionEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("test");
         if (other.tag == "Arrow")

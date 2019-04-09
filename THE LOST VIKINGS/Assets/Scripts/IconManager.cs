@@ -37,7 +37,7 @@ public class IconManager : MonoBehaviour
     {
 
         iconeSelectNum = Mathf.Clamp(iconeSelectNum, 0, 3);
-        Debug.Log("iconeSelectNum = " + iconeSelectNum);
+        //Debug.Log("iconeSelectNum = " + iconeSelectNum);
 
         if (_InventorySystem.myCollision == true)
         {
