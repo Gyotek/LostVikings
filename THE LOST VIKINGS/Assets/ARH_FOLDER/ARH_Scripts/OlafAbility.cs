@@ -6,6 +6,7 @@ public class OlafAbility : MonoBehaviour
 {
     private bool shieldIsUp = false;
     Animator animShield;
+    public Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +18,24 @@ public class OlafAbility : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Shield();
+        Falling();
+    }
 
+    void Falling()
+    {
+        if (shieldIsUp == true)
+        {
+            rb.gravityScale = 0.2f;
+        }
+        else if (shieldIsUp == false)
+        {
+            rb.gravityScale = 1f;
+        }
+    }
+
+    void Shield()
+    {
         if (FindObjectOfType<XboxController>().index == 0)
         {
             /*if (animShield.GetCurrentAnimatorStateInfo(0).IsName("ShieldUpEnded") && Physics2D.GetIgnoreLayerCollision(8, 11) == true)
@@ -41,6 +59,5 @@ public class OlafAbility : MonoBehaviour
             }
 
         }
-
     }
 }
