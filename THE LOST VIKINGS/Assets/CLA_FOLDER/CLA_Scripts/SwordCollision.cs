@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class SwordCollision : MonoBehaviour
 {
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Hi ?");
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.tag == "Enemy")
         {
             EnemyBehavior enemy = collision.gameObject.GetComponent<EnemyBehavior>();
             enemy.LoseHP(1);

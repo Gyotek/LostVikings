@@ -12,7 +12,7 @@ public class EnemyBehavior : MonoBehaviour
     private Rigidbody2D rigidBody;
 
     [SerializeField]
-    private int thrust = 5;
+    private int thrust = 10;
 
     private void Start()
     {
@@ -30,7 +30,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public void LoseHP (int hpToLose)
     {
-        rigidBody.AddForce(transform.up * thrust);
+        rigidBody.AddForce(transform.up * thrust, ForceMode2D.Impulse);
         hp -= hpToLose;
     }
 }
