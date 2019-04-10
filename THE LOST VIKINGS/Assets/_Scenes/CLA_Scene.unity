@@ -195,6 +195,7 @@ MonoBehaviour:
   thisIsSelected: 0
   isGrounded: 0
   canClimb: 0
+  hp: 100
   cameraList:
   - {fileID: 1405697059}
   - {fileID: 158069842}
@@ -215,6 +216,7 @@ MonoBehaviour:
   overlapBoxX: 0.98
   overlapBoxY: 0.98
   offsetBox: 0.05
+  xJoystick: 0
   isGroundedLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -686,6 +688,7 @@ GameObject:
   - component: {fileID: 803754688}
   - component: {fileID: 803754687}
   - component: {fileID: 803754691}
+  - component: {fileID: 803754692}
   m_Layer: 8
   m_Name: Erik le rapide
   m_TagString: Erik
@@ -817,6 +820,7 @@ MonoBehaviour:
   thisIsSelected: 0
   isGrounded: 0
   canClimb: 0
+  hp: 100
   cameraList:
   - {fileID: 1405697059}
   - {fileID: 158069842}
@@ -837,11 +841,28 @@ MonoBehaviour:
   overlapBoxX: 0.98
   overlapBoxY: 0.98
   offsetBox: 0.05
+  xJoystick: 0
   isGroundedLayer:
     serializedVersion: 2
     m_Bits: 512
   speed: 8
   index: 0
+--- !u!114 &803754692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803754686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58eb336e7e4ce104d8866f183c74b16b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  rigidBody: {fileID: 803754688}
+  controller: {fileID: 803754691}
+  thrust: 7
 --- !u!1 &1003914202
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,7 +987,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1003914202}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.38, y: 6.48, z: 0}
+  m_LocalPosition: {x: -2.38, y: -2.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2028216470}
@@ -988,6 +1009,7 @@ MonoBehaviour:
   thisIsSelected: 0
   isGrounded: 0
   canClimb: 0
+  hp: 100
   cameraList:
   - {fileID: 1405697059}
   - {fileID: 158069842}
@@ -1008,6 +1030,7 @@ MonoBehaviour:
   overlapBoxX: 0.98
   overlapBoxY: 0.98
   offsetBox: 0.05
+  xJoystick: 0
   isGroundedLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -1029,6 +1052,10 @@ MonoBehaviour:
   arrow: {fileID: 3280152765837996679, guid: 906ec62750384b24a9db0e874e46cc19, type: 3}
   arrowCoolDown: 1.5
   canShoot: 1
+  canHit: 1
+  swordCoolDown: 1
+  swordDamage: 1
+  swordCollision: {fileID: 2028216471}
 --- !u!1 &1149536175
 GameObject:
   m_ObjectHideFlags: 3
@@ -1185,7 +1212,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1171148220}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.38, y: 6.48, z: -10}
+  m_LocalPosition: {x: -2.38, y: -2.88, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 638706919}
@@ -1497,6 +1524,7 @@ GameObject:
   - component: {fileID: 2028216470}
   - component: {fileID: 2028216471}
   - component: {fileID: 2028216472}
+  - component: {fileID: 2028216473}
   m_Layer: 8
   m_Name: SwordCollider
   m_TagString: Untagged
@@ -1528,7 +1556,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1553,12 +1581,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 2028216469}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87d7e2a0372d8ea40a4763889fb85acf, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d156150f670eb0479f0717c0b7777ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canHit: 1
-  swordCoolDown: 3
-  damage: 1
+--- !u!50 &2028216473
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028216469}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &5641456611908891344
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1570,6 +1616,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641456613176595309, guid: a8e7a4d9dfcb28b4fb2f5f78ad7534d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5641456613176595217, guid: a8e7a4d9dfcb28b4fb2f5f78ad7534d4,
         type: 3}
@@ -1625,6 +1676,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641456613176595218, guid: a8e7a4d9dfcb28b4fb2f5f78ad7534d4,
+        type: 3}
+      propertyPath: thrust
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8e7a4d9dfcb28b4fb2f5f78ad7534d4, type: 3}
