@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class InventorySystem : MonoBehaviour
 {
-    public List<GameObject> inventaire = new List<GameObject>();
-
     public bool myCollision;
 
     public GameObject objetInventaire;
@@ -22,7 +20,6 @@ public class InventorySystem : MonoBehaviour
     {
         if (other.tag == "Object")
         {
-            Debug.Log("Collision Object ");
             //inventaire.Add(other.gameObject);
             objetInventaire = other.gameObject;
             StartCoroutine(Coroutine());
@@ -30,7 +27,6 @@ public class InventorySystem : MonoBehaviour
             {
                 other.gameObject.SetActive(false);
                 objectCounter += 1;
-                Debug.Log("objectCounter = " + objectCounter);
             }
         }
     }
@@ -38,7 +34,6 @@ public class InventorySystem : MonoBehaviour
     private IEnumerator Coroutine()
     {
         myCollision = true;
-        Debug.Log("coroutine played");
         yield return new WaitForEndOfFrame();
         myCollision = false;
     }

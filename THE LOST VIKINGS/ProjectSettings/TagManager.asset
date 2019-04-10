@@ -10,7 +10,7 @@ TagManager:
   - Enemy
   - Waypoint
   - Object
-  - Arrow
+  - Fleche
   layers:
   - Default
   - TransparentFX

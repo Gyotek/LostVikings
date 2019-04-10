@@ -4,8 +4,10 @@ TextureImporter:
   fileIDToRecycleName:
     21300000: Forest_terrain_slope_dirt_grass(summer)_128px_0
     21300002: Forest_terrain_slope_dirt_grass(summer)_128px_1
+    21300004: Test_0
+    21300006: Test_1
   externalObjects: {}
-  serializedVersion: 5
+  serializedVersion: 9
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +25,8 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -33,7 +37,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: -1
     aniso: -1
-    mipBias: -1
+    mipBias: -100
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -95,7 +99,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Forest_terrain_slope_dirt_grass(summer)_128px_0
+      name: Test_0
       rect:
         serializedVersion: 2
         x: 0
@@ -109,13 +113,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: abfd8be761b847549a9c83d2bbfc5efd
+      spriteID: aea141a18e51e4c43889d90f2a5606eb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Forest_terrain_slope_dirt_grass(summer)_128px_1
+      name: Test_1
       rect:
         serializedVersion: 2
         x: 128
@@ -129,7 +133,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e819bd7205fcc1459b95a6ac1c6cdea
+      spriteID: 776b25144c026444ab7e6c4444a7c9b4
       vertices: []
       indices: 
       edges: []
@@ -143,6 +147,8 @@ TextureImporter:
     edges: []
     weights: []
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
