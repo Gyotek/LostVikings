@@ -82,7 +82,7 @@ public class XboxController : MonoBehaviour
             this.thisIsSelected = false;
         }
 
-        if ((Input.GetKeyDown("joystick 1 button 3") || Input.GetKeyDown("space")) && charactersList.Count > 1 && this.gameObject.tag == charactersList[index].tag && this.isGrounded == true)
+        if (Input.GetKeyDown("joystick 1 button 3") && charactersList.Count > 1 && this.gameObject.tag == charactersList[index].tag && this.isGrounded == true)
         {
             StartCoroutine("SelectionCoroutine");
         }

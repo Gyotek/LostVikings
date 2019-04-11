@@ -59,7 +59,6 @@ public class OlafAbility : MonoBehaviour
             else if (Input.GetKeyDown("joystick 1 button 2") && shieldIsUp)
             {
                 shieldIsUp = false;
-                Debug.Log("Ignore collision true");
                 Physics2D.IgnoreLayerCollision(8, 11);
             }
 

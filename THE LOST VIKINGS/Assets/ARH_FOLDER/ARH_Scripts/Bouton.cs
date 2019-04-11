@@ -16,7 +16,6 @@ public class Bouton : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("test");
         if (other.tag == "Arrow" && isPlayed == false)
         {
             animPont.Play("Pont");
