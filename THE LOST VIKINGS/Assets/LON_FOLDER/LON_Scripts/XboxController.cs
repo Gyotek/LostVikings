@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.UI;
 
 public class XboxController : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class XboxController : MonoBehaviour
     public bool isGrounded;
     public bool canClimb;
 
-    public int hp = 100;
+    public int hp = 3;
+
+    public List<GameObject> pvImageList = new List<GameObject>();
 
     public List<CinemachineVirtualCamera> cameraList = new List<CinemachineVirtualCamera>();
     public List<Rigidbody2D> rbList = new List<Rigidbody2D>();
@@ -31,7 +34,6 @@ public class XboxController : MonoBehaviour
 
     public float speed;
 
-   
     public int index;
 
     private Rigidbody2D rb;
@@ -45,7 +47,8 @@ public class XboxController : MonoBehaviour
     // Start
     void Start()
     {
-        rb = this.GetComponent<Rigidbody2D>();     
+        hp = pvImageList.Count;
+        rb = this.GetComponent<Rigidbody2D>();
     }
 
     /*
@@ -60,9 +63,15 @@ public class XboxController : MonoBehaviour
     // Update
     void Update()
     {
+        DeathTest();
         Selection();
         CameraFocus();
         xJoystick = Input.GetAxis("Horizontal");
+
+        if(Input.GetKeyDown(KeyCode.L) && thisIsSelected == true)
+        {
+            PlayerTakeDamages();
+        }
     }
 
     // Fixed Update
@@ -197,7 +206,6 @@ public class XboxController : MonoBehaviour
         {
             for(int i = 0; i < controllerScriptList.Count; i++)
             {
-                Debug.Log("Index set to 0");
                 controllerScriptList[i].index = 0;                
             }
         }
@@ -205,10 +213,52 @@ public class XboxController : MonoBehaviour
         {
             for (int i = 0; i < controllerScriptList.Count; i++)
             {
-                Debug.Log("Index set to ++");
                 controllerScriptList[i].index++;
             }
         }
+    }
+
+
+    public void PlayerTakeDamages()
+    {
+        this.hp--;
+        pvImageList[hp].SetActive(false);    
+    }
+
+    public void DeathTest()
+    {
+        if (hp <= 0)
+        {
+            foreach(GameObject go in charactersList)
+            {
+                XboxController xc = go.GetComponent<XboxController>();
+                if(go != this.gameObject)
+                {
+                    if (this.gameObject.tag == "Olaf")
+                    {
+                        xc.cameraList.Remove(cameraList[0]);
+                        xc.rbList.Remove(rbList[0]);
+                    }
+                    else if (this.gameObject.tag == "Erik")
+                    {
+                        xc.cameraList.Remove(cameraList[1]);
+                        xc.rbList.Remove(rbList[1]);
+                    }
+                    else if (this.gameObject.tag == "Baleog")
+                    {
+                        xc.cameraList.Remove(cameraList[2]);
+                        xc.rbList.Remove(rbList[2]);
+                    }
+
+                    xc.charactersList.Remove(this.gameObject);
+                    xc.controllerScriptList.Remove(this);
+                }
+
+            }
+
+            Destroy(this.gameObject);
+
+        } //IL FAUT LE CAMERA FOLLOW
     }
 
     // POUR FAIRE LES DÉPLACEMENTS AVEC DES FORCES :     //rb.AddForce(transform.right * speed (entre 0 et 1) , ForceMode2D.Impulse);
