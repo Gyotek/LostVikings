@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class BridgeButton : MonoBehaviour
 {
-    public BoxCollider2D toDisable;
-    public BoxCollider2D toEnable;
+    public GameObject toDisable;
+    public GameObject toEnable;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Fleche")
         {
-            toDisable.enabled = false;
-            toEnable.enabled = true;
+            toDisable.SetActive(false);
+            toEnable.SetActive(true);
+
+            Destroy(collision.gameObject);
         }
     }
 
