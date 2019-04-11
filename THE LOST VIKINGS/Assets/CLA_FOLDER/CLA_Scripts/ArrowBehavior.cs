@@ -21,13 +21,6 @@ public class ArrowBehavior : MonoBehaviour
         rigidBody.AddForce(transform.right * speed, ForceMode2D.Force);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //transform.position = new Vector2(transform.position.x + speed * Time.deltaTime, transform.position.y);
-        
-    }
-
     private void OnBecameInvisible()
     {
         Debug.Log("Invisible");
@@ -61,6 +54,7 @@ public class ArrowBehavior : MonoBehaviour
             Debug.Log(this + " hit a button");
             //ButtonBehavior button = collision.gameObject.GetComponent<ButtonBehavior>();
             //button.triggerButton();
+            //Destroy(gameObject);
         }
     }
 }
