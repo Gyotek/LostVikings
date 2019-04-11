@@ -7,6 +7,7 @@ public class OlafAbility : MonoBehaviour
     private bool shieldIsUp = false;
     Animator animShield;
     public Rigidbody2D rb;
+    public XboxController myPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -19,16 +20,20 @@ public class OlafAbility : MonoBehaviour
     void Update()
     {
         Shield();
-        Falling();
+
+        if(myPlayer.isGrounded == false)
+        {
+            Falling();
+        }
     }
 
     void Falling()
     {
-        if (shieldIsUp == true)
+        if (shieldIsUp == true && rb.gravityScale != 0.4f)
         {
-            rb.gravityScale = 0.2f;
+            rb.gravityScale = 0.4f;
         }
-        else if (shieldIsUp == false)
+        else if (shieldIsUp == false && rb.gravityScale != 1f)
         {
             rb.gravityScale = 1f;
         }

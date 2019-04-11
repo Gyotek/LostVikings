@@ -7,6 +7,8 @@ public class Bouton : MonoBehaviour
     public Animation animPont;
     public CircleCollider2D Collider;
 
+    private bool isPlayed = false;
+
     // Update is called once per frame
     void Update()
     {
@@ -15,10 +17,10 @@ public class Bouton : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("test");
-        if (other.tag == "Arrow")
+        if (other.tag == "Arrow" && isPlayed == false)
         {
             animPont.Play("Pont");
-            Destroy(other.gameObject);
+            isPlayed = true;
         }
     }
 }
