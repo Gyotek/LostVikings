@@ -9,6 +9,7 @@ TagManager:
   - Baleog
   - Enemy
   - Waypoint
+  - Arrow
   layers:
   - Default
   - TransparentFX
