@@ -18,7 +18,7 @@ public class Climbing : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Olaf")
         {
@@ -28,7 +28,11 @@ public class Climbing : MonoBehaviour
             Rigidbody2D rb = myDico[Vikings.Olaf].GetComponent<Rigidbody2D>();
             rb.gravityScale = 0;
         }
-        else if (collision.tag == "Erik")
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Erik")
         {
             myDico[Vikings.Erik] = collision.gameObject;
             XboxController cc = myDico[Vikings.Erik].GetComponent<XboxController>();
