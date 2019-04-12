@@ -5,6 +5,14 @@ using UnityEngine.UI;
 
 public class IconManager : MonoBehaviour
 {
+    
+    public ItemManager itemManager;
+
+    [SerializeField] private Sprite bomb;
+    [SerializeField] private Sprite battery;
+    [SerializeField] private Sprite nuke;
+    [SerializeField] private Sprite key;
+
     public List<Image> listIcons = new List<Image>();
 
     public XboxController myCurrentPlayer;
@@ -33,12 +41,10 @@ public class IconManager : MonoBehaviour
     {
         num = 0;
         iconName = "Icon"+num;
-
         foreach(Image im in listIcons)
         {
             im.sprite = blank;
         }
-
         iconeSelectNum = 0;
     }
 
@@ -60,6 +66,24 @@ public class IconManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                if (listIcons[iconeSelectNum].sprite == bomb)
+                {
+                    itemManager.Bomb();
+                }
+                else if (listIcons[iconeSelectNum].sprite == nuke)
+                {
+                    itemManager.Nuke();
+                }
+                else if (listIcons[iconeSelectNum].sprite == battery)
+                {
+                    itemManager.Battery();
+                }
+                else if (listIcons[iconeSelectNum].sprite == key)
+                {
+                    itemManager.Key();
+                }
+
+
                 listIcons[iconeSelectNum].sprite = blank;
                 blank.name = "Blank";
                 num--;
@@ -85,6 +109,19 @@ public class IconManager : MonoBehaviour
             }
         }
 
+    }
+
+    public void RemoveKey(int numInList)
+    {
+        listIcons[numInList].sprite = blank;
+        blank.name = "Blank";
+        num--;
+        num = Mathf.Clamp(num, 0, 4);
+        blankCounter++;
+
+        SpriteSorter();
+
+        _InventorySystem.objectCounter -= 1;
     }
 
     public void SpriteSorter()

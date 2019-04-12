@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class OlafAbility : MonoBehaviour
 {
+    public XboxController olafController;
+
     private bool shieldIsUp = false;
     Animator animShield;
     public Rigidbody2D rb;
-    public XboxController myPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,7 @@ public class OlafAbility : MonoBehaviour
     {
         Shield();
 
-        if(myPlayer.isGrounded == false)
+        if(olafController.isGrounded == false)
         {
             Falling();
         }
@@ -41,7 +42,7 @@ public class OlafAbility : MonoBehaviour
 
     void Shield()
     {
-        if (FindObjectOfType<XboxController>().index == 0)
+        if (olafController.thisIsSelected == true)
         {
             /*if (animShield.GetCurrentAnimatorStateInfo(0).IsName("ShieldUpEnded") && Physics2D.GetIgnoreLayerCollision(8, 11) == true)
              {
