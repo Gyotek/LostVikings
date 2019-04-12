@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BaleogAbility : MonoBehaviour
 {
+    public XboxController baleogController;
+
     [SerializeField]
     private Vector3 thisPosition;
 
@@ -37,14 +39,14 @@ public class BaleogAbility : MonoBehaviour
     {
         thisPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
-        if ((Input.GetKeyDown("return") || Input.GetKeyDown(KeyCode.Joystick1Button0)) && FindObjectOfType<XboxController>().index == 2 && canShoot == true)
+        if ((Input.GetKeyDown("return") || Input.GetKeyDown(KeyCode.Joystick1Button0)) && baleogController.thisIsSelected == true && canShoot == true)
         {
             Instantiate(arrow, thisPosition, Quaternion.identity);
             canShoot = false;
             StartCoroutine(ArrowCoolDown());
         }
 
-        if ((Input.GetKeyDown(KeyCode.Joystick1Button2) || Input.GetKeyDown("backspace")) && canHit && FindObjectOfType<XboxController>().index == 2)
+        if ((Input.GetKeyDown(KeyCode.Joystick1Button2) || Input.GetKeyDown("backspace")) && canHit && baleogController.thisIsSelected == true)
         {
             canHit = false;
             StartCoroutine(SwordCoolDown());

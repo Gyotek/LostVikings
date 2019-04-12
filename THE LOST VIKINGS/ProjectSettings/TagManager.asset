@@ -11,6 +11,7 @@ TagManager:
   - Waypoint
   - Object
   - Fleche
+  - Arrow
   layers:
   - Default
   - TransparentFX

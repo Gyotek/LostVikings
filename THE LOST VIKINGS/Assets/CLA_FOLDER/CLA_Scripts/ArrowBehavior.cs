@@ -13,10 +13,12 @@ public class ArrowBehavior : MonoBehaviour
     [SerializeField]
     private float destroyCoolDown = 3f;
 
-    // Update is called once per frame
-    void Update()
+    public Rigidbody2D rigidBody;
+
+    private void Start()
     {
-        transform.position = new Vector2(transform.position.x + speed * Time.deltaTime, transform.position.y);
+        rigidBody = GetComponent<Rigidbody2D>();
+        rigidBody.AddForce(transform.right * speed, ForceMode2D.Force);
     }
 
     private void OnBecameInvisible()
@@ -44,6 +46,7 @@ public class ArrowBehavior : MonoBehaviour
             Debug.Log(this + " hit an enemy");
             EnemyBehavior enemy = collision.gameObject.GetComponent<EnemyBehavior>();
             enemy.LoseHP(damage);
+            Destroy(gameObject);
         }
 
         if (collision.gameObject.tag == "Button")
@@ -51,6 +54,7 @@ public class ArrowBehavior : MonoBehaviour
             Debug.Log(this + " hit a button");
             //ButtonBehavior button = collision.gameObject.GetComponent<ButtonBehavior>();
             //button.triggerButton();
+            //Destroy(gameObject);
         }
     }*/
 }
