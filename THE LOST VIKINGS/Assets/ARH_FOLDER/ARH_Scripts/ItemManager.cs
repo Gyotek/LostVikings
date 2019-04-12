@@ -19,6 +19,10 @@ public class ItemManager : MonoBehaviour
     public GameObject erik;
     public GameObject baleog;
 
+    public XboxController olafController;
+    public XboxController erikController;
+    public XboxController baleogController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,15 +42,15 @@ public class ItemManager : MonoBehaviour
 
     public void Bomb()
     {
-        if (FindObjectOfType<XboxController>().index == 0)
+        if (olafController.thisIsSelected == true)
         {
             Instantiate(bombPrefab, olaf.transform.position, olaf.transform.rotation);
         }
-        else if (FindObjectOfType<XboxController>().index == 1)
+        else if (erikController.thisIsSelected == true)
         {
             Instantiate(bombPrefab, erik.transform.position, erik.transform.rotation);
         }
-        else if (FindObjectOfType<XboxController>().index == 2)
+        else if (baleogController.thisIsSelected == true)
         {
             Instantiate(bombPrefab, baleog.transform.position, baleog.transform.rotation);
         }
@@ -54,15 +58,15 @@ public class ItemManager : MonoBehaviour
 
     public void Battery()
     {
-        if(FindObjectOfType<XboxController>().index == 0)
+        if(olafController.thisIsSelected == true)
         {
             //Redonne une life a Olaf
         }
-        else if (FindObjectOfType<XboxController>().index == 1)
+        else if (erikController.thisIsSelected == true)
         {
             //Redonne une life a Erik
         }
-        else if (FindObjectOfType<XboxController>().index == 2)
+        else if (baleogController.thisIsSelected == true)
         {
             //Redonne une life a Olaf
         }
