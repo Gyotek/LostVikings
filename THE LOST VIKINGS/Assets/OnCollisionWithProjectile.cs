@@ -16,7 +16,10 @@ public class OnCollisionWithProjectile : MonoBehaviour
         if(collision.tag == "Erik" || collision.tag == "Baleog" || collision.tag == "Olaf")
         {
             XboxController player = collision.GetComponent<XboxController>();
-            player.hp = player.hp - myShooter.enemyA.damages;
+            for(int i = 0; i < myShooter.enemyA.damages; i++)
+            {
+                player.PlayerTakeDamages();
+            }
 
             Destroying();
         }

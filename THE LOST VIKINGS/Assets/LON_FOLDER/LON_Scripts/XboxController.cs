@@ -102,7 +102,6 @@ public class XboxController : MonoBehaviour
 
         if (Input.GetKeyDown("joystick 1 button 3") && charactersList.Count > 1 && this.gameObject.tag == charactersList[index].tag && this.isGrounded == true)
         {
-            Debug.Log("Button");
             StartCoroutine("SelectionCoroutine");
         }
     }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1003561167}
   - component: {fileID: 837324790032353646}
   - component: {fileID: 7948256997349029512}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Arrow
   m_TagString: Arrow
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &7948256997349029512
 BoxCollider2D:
   m_ObjectHideFlags: 0

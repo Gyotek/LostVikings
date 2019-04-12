@@ -26,7 +26,7 @@ public class ErikAbility : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (controller.thisIsSelected == true && Input.GetKeyDown("return"))
+        if (controller.thisIsSelected == true && Input.GetKeyDown("joystick 1 button 2"))
         {
             if (controller.isGrounded == true && controller.canClimb == false)
             {
@@ -36,7 +36,6 @@ public class ErikAbility : MonoBehaviour
 
         if (isStunned == true)
         {
-            Debug.Log("omg I'm Erik and I'm Stunned by this wall!");
             StartCoroutine(erikStunDelay());
         }
     }
@@ -45,6 +44,5 @@ public class ErikAbility : MonoBehaviour
     {
         yield return new WaitForSeconds(stunDelay);
         isStunned = false;
-        Debug.Log("I'm no longer stunned!");
     }
 }

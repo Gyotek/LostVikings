@@ -48,6 +48,7 @@ public class IconManager : MonoBehaviour
     public void Update()
     {
         iconeSelectNum = Mathf.Clamp(iconeSelectNum, 0, _InventorySystem.objectCounter);
+        Debug.Log(iconeSelectNum);
 
         if (_InventorySystem.myCollision == true)
         {
@@ -94,13 +95,13 @@ public class IconManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 iconeSelectNum -= 1;
-                Debug.Log(iconeSelectNum);
+                // NE PAS METTRE Debug.Log(iconeSelectNum);
             }
 
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 iconeSelectNum += 1;
-                Debug.Log(iconeSelectNum);
+                // NE PAS METTRE Debug.Log(iconeSelectNum);
             }
         }
 
