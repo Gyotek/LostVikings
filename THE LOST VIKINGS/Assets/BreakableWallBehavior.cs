@@ -14,7 +14,7 @@ public class BreakableWallBehavior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Erik") && erikController.speed >= 4 && erikController.isGrounded == true)
+        if (collision.gameObject.CompareTag("Erik") && erikController.speed >= 0.5f/* && erikController.isGrounded == true*/ && erikAbility.isRusing == true)
         {
             StunErik();
             Destroy(gameObject);

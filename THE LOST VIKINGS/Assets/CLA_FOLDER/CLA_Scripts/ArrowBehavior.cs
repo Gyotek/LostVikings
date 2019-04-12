@@ -22,13 +22,11 @@ public class ArrowBehavior : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        Debug.Log("Invisible");
         StartCoroutine(DestroyDelay());
     }
 
     private void OnBecameVisible()
     {
-        Debug.Log("Visible");
         StopCoroutine(DestroyDelay());
     }
 

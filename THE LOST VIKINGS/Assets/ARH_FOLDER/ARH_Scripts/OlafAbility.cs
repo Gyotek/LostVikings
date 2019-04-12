@@ -7,29 +7,34 @@ public class OlafAbility : MonoBehaviour
     public XboxController olafController;
 
     private bool shieldIsUp = false;
-    Animator animShield;
     public Rigidbody2D rb;
 
+    public Sprite shieldUpSprite;
+    public Sprite shieldDownSprite;
+
     public SpriteRenderer mySprite;
+
+    public CapsuleCollider2D colRight;
+    public CapsuleCollider2D colLeft;
+    public CapsuleCollider2D colUp;
 
     // Start is called before the first frame update
     void Start()
     {
         Physics2D.IgnoreLayerCollision(8, 11, true);
-        animShield = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Shield();
+        if (olafController.thisIsSelected == true)
+            Shield();
 
         if(olafController.isGrounded == false)
-        {
             Falling();
-        }
 
-        Flip();
+        if (olafController.thisIsSelected == true)
+            Flip();
     }
 
     void Flip()
@@ -37,12 +42,20 @@ public class OlafAbility : MonoBehaviour
         if (olafController.goingRight && mySprite.flipX)
         {
             mySprite.flipX = false;
-
-
+            if (shieldIsUp == false && colRight.enabled == false)
+            {
+                colLeft.enabled = false;
+                colRight.enabled = true;
+            }
         }
         else if (!olafController.goingRight && !mySprite.flipX)
         {
             mySprite.flipX = true;
+            if (shieldIsUp == false && colRight.enabled == true)
+            {
+                colLeft.enabled = true;
+                colRight.enabled = false;
+            }
         }
     }
 
@@ -60,27 +73,36 @@ public class OlafAbility : MonoBehaviour
 
     void Shield()
     {
-        if (olafController.thisIsSelected == true)
+
+        if (Input.GetKeyDown("joystick 1 button 2") && !shieldIsUp)
         {
-            /*if (animShield.GetCurrentAnimatorStateInfo(0).IsName("ShieldUpEnded") && Physics2D.GetIgnoreLayerCollision(8, 11) == true)
-             {
-                Debug.Log("Ignore collision false");
-                Physics2D.IgnoreLayerCollision(8, 11, false);
-            }*/
+            shieldIsUp = true;
+            colUp.enabled = true;
+            if (colRight.enabled == true)
+                colRight.enabled = false;
+            if (colLeft.enabled == true)
+                colLeft.enabled = false;
+            mySprite.sprite = shieldUpSprite;
+            Physics2D.IgnoreLayerCollision(8, 11, false);
+        }
+        else if (Input.GetKeyDown("joystick 1 button 2") && shieldIsUp)
+        {
+            shieldIsUp = false;
 
-            animShield.SetBool("shieldIsUp", shieldIsUp);
-            if (Input.GetKeyDown("joystick 1 button 2") && !shieldIsUp)
+            colUp.enabled = false;
+            if(mySprite.flipX == true)
             {
-                shieldIsUp = true;
-
-                Physics2D.IgnoreLayerCollision(8, 11, false);
+                colRight.enabled = false;
+                colLeft.enabled = true;
             }
-            else if (Input.GetKeyDown("joystick 1 button 2") && shieldIsUp)
+            else if (mySprite.flipX == false)
             {
-                shieldIsUp = false;
-                Physics2D.IgnoreLayerCollision(8, 11);
+                colRight.enabled = true;
+                colLeft.enabled = false;
             }
 
+            mySprite.sprite = shieldDownSprite;
+            Physics2D.IgnoreLayerCollision(8, 11);
         }
     }
 }

@@ -18,6 +18,10 @@ public class ErikAbility : MonoBehaviour
     [SerializeField]
     private float stunDelay = 10.0f;
 
+    public SpriteRenderer mySprite;
+
+    public bool isRusing = false;
+
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -34,9 +38,47 @@ public class ErikAbility : MonoBehaviour
             }
         }
 
+        //Rush
+        if (controller.thisIsSelected == true && Input.GetKeyDown(KeyCode.Joystick1Button0))
+        {
+            isRusing = true;
+            if (controller.goingRight)
+                this.gameObject.transform.rotation = Change(0, 0, -0.3f);
+            else if (!controller.goingRight)
+                this.gameObject.transform.rotation = Change(0, 0, 0.3f);
+        }
+        if (controller.thisIsSelected == true && Input.GetKeyUp(KeyCode.Joystick1Button0))
+        {
+            isRusing = false;
+            this.gameObject.transform.rotation = Change(0, 0, 0);
+        }
+
+
         if (isStunned == true)
         {
             StartCoroutine(erikStunDelay());
+        }
+        if (controller.thisIsSelected == true)
+            Flip();
+    }
+
+    private static Quaternion Change(float x, float y, float z)
+    {
+        //Return the new Quaternion
+        return new Quaternion(x, y, z, 1);
+    }
+
+    void Flip()
+    {
+        if (controller.goingRight && mySprite.flipX)
+        {
+            mySprite.flipX = false;
+
+
+        }
+        else if (!controller.goingRight && !mySprite.flipX)
+        {
+            mySprite.flipX = true;
         }
     }
 
