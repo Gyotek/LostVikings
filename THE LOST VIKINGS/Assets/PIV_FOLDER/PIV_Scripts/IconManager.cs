@@ -34,9 +34,6 @@ public class IconManager : MonoBehaviour
 
     public int iconeSelectNum;
 
-    [SerializeField]
-    private int iconeSelectNumFixed;
-
     void Start()
     {
         num = 0;
@@ -50,8 +47,6 @@ public class IconManager : MonoBehaviour
 
     public void Update()
     {
-        //iconeSelectNum = Mathf.Clamp(iconeSelectNum, 0, num - 1);
-        //iconeSelectNumFixed = iconeSelectNum + 1;
         iconeSelectNum = Mathf.Clamp(iconeSelectNum, 0, _InventorySystem.objectCounter);
 
         if (_InventorySystem.myCollision == true)

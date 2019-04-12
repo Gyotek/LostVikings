@@ -34,7 +34,8 @@ public class XboxController : MonoBehaviour
 
     public float overlapBoxX;
     public float overlapBoxY;
-    public float offsetBox;
+    public float offsetBoxX;
+    public float offsetBoxY;
 
     public float xJoystick;
 
@@ -101,6 +102,7 @@ public class XboxController : MonoBehaviour
 
         if (Input.GetKeyDown("joystick 1 button 3") && charactersList.Count > 1 && this.gameObject.tag == charactersList[index].tag && this.isGrounded == true)
         {
+            Debug.Log("Button");
             StartCoroutine("SelectionCoroutine");
         }
     }
@@ -123,7 +125,7 @@ public class XboxController : MonoBehaviour
     //Dessiner l'OverlapCircle sur l'Editeur
     private void OnDrawGizmos()
     {
-        Gizmos.DrawCube(transform.position - new Vector3(0, offsetBox, 0), new Vector2(overlapBoxX, overlapBoxY));
+        Gizmos.DrawCube(transform.position - new Vector3(offsetBoxX, offsetBoxY, 0), new Vector2(overlapBoxX, overlapBoxY));
     }
 
     public void MovingSystem()
@@ -132,7 +134,7 @@ public class XboxController : MonoBehaviour
         float yAxis = Input.GetAxis("Vertical");
 
         //Système d'Overlap avec radius et offset tweakable pour détecter si le personnage est au sol ou non
-        isGroundedArray = Physics2D.OverlapBoxAll(transform.position - new Vector3(0, offsetBox, 0), new Vector2(overlapBoxX,overlapBoxY), 0, isGroundedLayer);
+        isGroundedArray = Physics2D.OverlapBoxAll(transform.position - new Vector3(offsetBoxX, offsetBoxY, 0), new Vector2(overlapBoxX,overlapBoxY), 0, isGroundedLayer);
 
         if(isGroundedArray.Length == 0)
         {

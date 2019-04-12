@@ -29,7 +29,7 @@ namespace EnemyClass
         public Enemy()
         {
             currentHp = 50;
-            damages = 5;
+            damages = 1;
             shootingRate = 2;
             type = EnemyType.melee;
         }

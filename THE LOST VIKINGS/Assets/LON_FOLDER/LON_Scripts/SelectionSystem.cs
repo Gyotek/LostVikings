@@ -18,7 +18,7 @@ public class SelectionSystem : MonoBehaviour
     public void Selection()
     {
         if(Input.GetKeyDown("joystick 1 button 3") && charactersList.Count > 1)
-        {         
+        {
             if(index > charactersList.Count)
             {
                 index = 0;
