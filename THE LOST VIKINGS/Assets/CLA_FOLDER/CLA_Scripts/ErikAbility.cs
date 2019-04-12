@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class ErikAbility : MonoBehaviour
 {
-    public XboxController erikController;
-
-
     public float speed;
 
     public Rigidbody2D rigidBody;
@@ -24,7 +21,7 @@ public class ErikAbility : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (erikController.thisIsSelected == true && Input.GetKeyDown("return"))
+        if (controller.thisIsSelected == true && Input.GetKeyDown("return"))
         {
             if (controller.isGrounded == true && controller.canClimb == false)
             {
