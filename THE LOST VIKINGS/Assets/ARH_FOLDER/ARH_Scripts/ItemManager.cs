@@ -94,15 +94,15 @@ public class ItemManager : MonoBehaviour
     {
         if(olafController.thisIsSelected == true)
         {
-            //Redonne une life a Olaf
+            olafController.PlayerHeal();
         }
         else if (erikController.thisIsSelected == true)
         {
-            //Redonne une life a Erik
+            erikController.PlayerHeal();
         }
         else if (baleogController.thisIsSelected == true)
         {
-            //Redonne une life a Olaf
+            baleogController.PlayerHeal();
         }
 
     }

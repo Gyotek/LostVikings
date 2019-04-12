@@ -249,6 +249,12 @@ public class XboxController : MonoBehaviour
         pvImageList[hp].SetActive(false);    
     }
 
+    public void PlayerHeal()
+    {
+        this.hp++;
+        pvImageList[hp-1].SetActive(true);
+    }
+
     public void DeathTest()
     {
         if (hp <= 0)
