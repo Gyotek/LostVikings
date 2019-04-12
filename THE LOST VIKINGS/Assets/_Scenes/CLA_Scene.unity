@@ -1556,10 +1556,5 @@ PrefabInstance:
       propertyPath: controllerScriptList.Array.data[2]
       value: 
       objectReference: {fileID: 1003914205}
-    - target: {fileID: 7593234999125715832, guid: 5c25649d4d8e5634fa83d4c72a2e7ffb,
-        type: 3}
-      propertyPath: erikController
-      value: 
-      objectReference: {fileID: 803754691}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c25649d4d8e5634fa83d4c72a2e7ffb, type: 3}

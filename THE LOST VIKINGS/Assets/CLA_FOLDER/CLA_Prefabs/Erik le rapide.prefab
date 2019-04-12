@@ -188,3 +188,5 @@ MonoBehaviour:
   rigidBody: {fileID: 7593234999125715836}
   controller: {fileID: 7593234999125715839}
   thrust: 7
+  isStunned: 0
+  stunDelay: 10

@@ -16,7 +16,7 @@ public class ErikAbility : MonoBehaviour
     public bool isStunned = false;
 
     [SerializeField]
-    private float stunDelay = 1.0f;
+    private float stunDelay = 10.0f;
 
     private void Start()
     {
@@ -36,15 +36,16 @@ public class ErikAbility : MonoBehaviour
 
         if (isStunned == true)
         {
-            Debug.Log("omg I'm Erik and I'm Stunned by this wall!");
             StartCoroutine(erikStunDelay());
         }
     }
 
     IEnumerator erikStunDelay()
     {
+        rigidBody.bodyType = RigidbodyType2D.Static;
         yield return new WaitForSeconds(stunDelay);
         isStunned = false;
-        Debug.Log("I'm no longer stunned!");
+        rigidBody.bodyType = RigidbodyType2D.Dynamic;
+        StopAllCoroutines();
     }
 }

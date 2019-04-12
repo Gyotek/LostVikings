@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ArrowBehavior : MonoBehaviour
 {
-
     [SerializeField]
     private float speed = 7;
 
@@ -49,12 +48,17 @@ public class ArrowBehavior : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (collision.gameObject.tag == "Button")
+        else if (collision.gameObject.tag == "Button")
         {
             Debug.Log(this + " hit a button");
             //ButtonBehavior button = collision.gameObject.GetComponent<ButtonBehavior>();
             //button.triggerButton();
             //Destroy(gameObject);
+        }
+
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            Destroy(gameObject);
         }
     }
 }
