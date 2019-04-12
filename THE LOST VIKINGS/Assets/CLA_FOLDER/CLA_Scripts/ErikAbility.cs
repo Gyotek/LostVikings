@@ -16,7 +16,7 @@ public class ErikAbility : MonoBehaviour
     public bool isStunned = false;
 
     [SerializeField]
-    private float stunDelay = 1.0f;
+    private float stunDelay = 10.0f;
 
     private void Start()
     {
@@ -42,7 +42,10 @@ public class ErikAbility : MonoBehaviour
 
     IEnumerator erikStunDelay()
     {
+        rigidBody.bodyType = RigidbodyType2D.Static;
         yield return new WaitForSeconds(stunDelay);
         isStunned = false;
+        rigidBody.bodyType = RigidbodyType2D.Dynamic;
+        StopAllCoroutines();
     }
 }
