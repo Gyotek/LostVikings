@@ -6,6 +6,9 @@ public class BaleogAbility : MonoBehaviour
 {
     public XboxController baleogController;
 
+    public Sprite bastionSprite;
+    public Sprite bastionAttackingSprite;
+
     [SerializeField]
     private Vector3 thisPosition;
 
@@ -57,9 +60,10 @@ public class BaleogAbility : MonoBehaviour
         {
             canHit = false;
             StartCoroutine(SwordCoolDown());
+            StartCoroutine(AttackSprite());
             swordCollision.enabled = true;
-            Debug.Log("Slash!");
         }
+
         if (baleogController.thisIsSelected == true)
             Flip();
     }
@@ -76,6 +80,13 @@ public class BaleogAbility : MonoBehaviour
         {
             mySprite.flipX = true;
         }
+    }
+
+    private IEnumerator AttackSprite()
+    {
+        mySprite.sprite = bastionAttackingSprite;
+        yield return new WaitForSeconds(0.1f);
+        mySprite.sprite = bastionSprite;
     }
 
     private IEnumerator ArrowCoolDown()

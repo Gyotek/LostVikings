@@ -12,6 +12,7 @@ public class IconManager : MonoBehaviour
     [SerializeField] private Sprite battery;
     [SerializeField] private Sprite nuke;
     [SerializeField] private Sprite key;
+    [SerializeField] private Sprite keyRed;
 
     public List<Image> listIcons = new List<Image>();
 
@@ -77,6 +78,10 @@ public class IconManager : MonoBehaviour
                 else if (listIcons[iconeSelectNum].sprite == key)
                 {
                     itemManager.Key();
+                }
+                else if (listIcons[iconeSelectNum].sprite == keyRed)
+                {
+                    itemManager.KeyRed();
                 }
 
 

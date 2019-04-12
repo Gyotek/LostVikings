@@ -15,6 +15,7 @@ public class ItemManager : MonoBehaviour
 
     public GameObject bombPrefab;
     public GameObject keyPrefab;
+    public GameObject keyRedPrefab;
 
     public GameObject olaf;
     public GameObject erik;
@@ -54,6 +55,22 @@ public class ItemManager : MonoBehaviour
         else if (baleogController.thisIsSelected == true)
         {
             Instantiate(keyPrefab, baleog.transform.position, baleog.transform.rotation);
+        }
+    }
+
+    public void KeyRed()
+    {
+        if (olafController.thisIsSelected == true)
+        {
+            Instantiate(keyRedPrefab, olaf.transform.position, olaf.transform.rotation);
+        }
+        else if (erikController.thisIsSelected == true)
+        {
+            Instantiate(keyRedPrefab, erik.transform.position, erik.transform.rotation);
+        }
+        else if (baleogController.thisIsSelected == true)
+        {
+            Instantiate(keyRedPrefab, baleog.transform.position, baleog.transform.rotation);
         }
     }
 
