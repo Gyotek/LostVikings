@@ -13,6 +13,11 @@ public class ErikAbility : MonoBehaviour
     [SerializeField]
     private float thrust = 7;
 
+    public bool isStunned = false;
+
+    [SerializeField]
+    private float stunDelay = 1.0f;
+
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -28,5 +33,18 @@ public class ErikAbility : MonoBehaviour
                 rigidBody.AddForce(transform.up * thrust, ForceMode2D.Impulse);
             }
         }
+
+        if (isStunned == true)
+        {
+            Debug.Log("omg I'm Erik and I'm Stunned by this wall!");
+            StartCoroutine(erikStunDelay());
+        }
+    }
+
+    IEnumerator erikStunDelay()
+    {
+        yield return new WaitForSeconds(stunDelay);
+        isStunned = false;
+        Debug.Log("I'm no longer stunned!");
     }
 }

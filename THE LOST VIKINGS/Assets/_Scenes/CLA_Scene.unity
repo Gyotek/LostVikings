@@ -525,6 +525,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7593234999833000380}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &803754687 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7593234999125715832, guid: 5c25649d4d8e5634fa83d4c72a2e7ffb,
+    type: 3}
+  m_PrefabInstance: {fileID: 7593234999833000380}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803754686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58eb336e7e4ce104d8866f183c74b16b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &803754688 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 7593234999125715836, guid: 5c25649d4d8e5634fa83d4c72a2e7ffb,
@@ -1301,6 +1313,16 @@ PrefabInstance:
       propertyPath: erikController
       value: 
       objectReference: {fileID: 803754691}
+    - target: {fileID: 2106161079466293311, guid: a12f5c685a5cced4a81d67da5e3f96a8,
+        type: 3}
+      propertyPath: erikAbility
+      value: 
+      objectReference: {fileID: 803754687}
+    - target: {fileID: 2106161079466293311, guid: a12f5c685a5cced4a81d67da5e3f96a8,
+        type: 3}
+      propertyPath: erikBody
+      value: 
+      objectReference: {fileID: 803754688}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a12f5c685a5cced4a81d67da5e3f96a8, type: 3}
 --- !u!1001 &7085877119352234400

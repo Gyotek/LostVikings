@@ -120,3 +120,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   erikController: {fileID: 0}
+  erikAbility: {fileID: 0}
+  erikBody: {fileID: 0}
+  stunForce: 3
