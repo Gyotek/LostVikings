@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class EnemyMeleeBehavior : MonoBehaviour
 {
-
-    public float speed;
-
-    [SerializeField]
-    private float raycastDistance = 3.0f;
-
-    private bool movingRight = true;
-
-    public Transform groundDetection;
-
     public bool playerInRange = false;
 
+    [SerializeField] Transform[] waypoints;
+    [SerializeField] int index;
+    [SerializeField] bool goRight =true;
+    [SerializeField] float agentSpeed;
+    [SerializeField] bool active;
+
+
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
+        //transform.Translate(Vector2.right * speed * Time.deltaTime);
+
+        rigidBody.velocity = Vector2.right * speed;
 
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, raycastDistance);
         if(groundInfo.collider == false)
@@ -43,5 +42,34 @@ public class EnemyMeleeBehavior : MonoBehaviour
         {
             Debug.Log("I see an enemy!");
         }
-;    }
+    } */
+
+    private void Update()
+    {
+        if (active) Movement();
+    }
+
+    void nextWaypoint()
+    {
+        if (goRight) index++;
+        else index--;
+
+        if(index == -1)
+        {
+            goRight = true;
+            index = 1;
+        }
+        else if (index == waypoints.Length)
+        {
+            goRight = false;
+            index = waypoints.Length - 2;
+        }
+    }
+
+    void Movement()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, waypoints[index].position, agentSpeed * Time.deltaTime);
+
+        if (Vector3.Distance(transform.position, waypoints[index].position) < 0.1f) nextWaypoint();
+    }
 }
