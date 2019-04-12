@@ -15,7 +15,7 @@ public class IconManager : MonoBehaviour
     private string iconName;
 
     [SerializeField]
-    private int num;
+    public int num;
 
     [SerializeField]
     private int blankCounter = 4;
@@ -24,7 +24,7 @@ public class IconManager : MonoBehaviour
 
     public Sprite blank;
 
-    private int iconeSelectNum;
+    public int iconeSelectNum;
 
     [SerializeField]
     private int iconeSelectNumFixed;
@@ -44,15 +44,16 @@ public class IconManager : MonoBehaviour
 
     public void Update()
     {
-        iconeSelectNum = Mathf.Clamp(iconeSelectNum, 0, num - 1);
-        iconeSelectNumFixed = iconeSelectNum + 1;
+        //iconeSelectNum = Mathf.Clamp(iconeSelectNum, 0, num - 1);
+        //iconeSelectNumFixed = iconeSelectNum + 1;
+        iconeSelectNum = Mathf.Clamp(iconeSelectNum, 0, _InventorySystem.objectCounter);
 
         if (_InventorySystem.myCollision == true)
         {
             SpriteRenderer theRenderer = _InventorySystem.objetInventaire.GetComponent<SpriteRenderer>();
             listIcons[num].sprite = theRenderer.sprite;
             num++;
-            num = Mathf.Clamp(num, 0, 4);
+            num = Mathf.Clamp(num, 0, 3);
             blankCounter--;
         }
         if(myCurrentPlayer.thisIsSelected == true)
@@ -74,11 +75,13 @@ public class IconManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 iconeSelectNum -= 1;
+                Debug.Log(iconeSelectNum);
             }
 
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 iconeSelectNum += 1;
+                Debug.Log(iconeSelectNum);
             }
         }
 
