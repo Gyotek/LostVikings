@@ -10,6 +10,8 @@ public class OlafAbility : MonoBehaviour
     Animator animShield;
     public Rigidbody2D rb;
 
+    public SpriteRenderer mySprite;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,22 @@ public class OlafAbility : MonoBehaviour
         if(olafController.isGrounded == false)
         {
             Falling();
+        }
+
+        Flip();
+    }
+
+    void Flip()
+    {
+        if (olafController.goingRight && mySprite.flipX)
+        {
+            mySprite.flipX = false;
+
+
+        }
+        else if (!olafController.goingRight && !mySprite.flipX)
+        {
+            mySprite.flipX = true;
         }
     }
 
