@@ -14,6 +14,7 @@ public class ItemManager : MonoBehaviour
     private bool isNuking = false;
 
     public GameObject bombPrefab;
+    public GameObject keyPrefab;
 
     public GameObject olaf;
     public GameObject erik;
@@ -38,6 +39,22 @@ public class ItemManager : MonoBehaviour
     public void Nuke()
     {
         StartCoroutine("Nuking");
+    }
+
+    public void Key()
+    {
+        if (olafController.thisIsSelected == true)
+        {
+            Instantiate(keyPrefab, olaf.transform.position, olaf.transform.rotation);
+        }
+        else if (erikController.thisIsSelected == true)
+        {
+            Instantiate(keyPrefab, erik.transform.position, erik.transform.rotation);
+        }
+        else if (baleogController.thisIsSelected == true)
+        {
+            Instantiate(keyPrefab, baleog.transform.position, baleog.transform.rotation);
+        }
     }
 
     public void Bomb()
@@ -84,7 +101,7 @@ public class ItemManager : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (isNuking == true || other.tag == "Enemy")
+        if (isNuking == true && other.tag == "Enemy")
         {
             Destroy(other.gameObject);
         }

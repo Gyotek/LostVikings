@@ -11,6 +11,7 @@ public class IconManager : MonoBehaviour
     [SerializeField] private Sprite bomb;
     [SerializeField] private Sprite battery;
     [SerializeField] private Sprite nuke;
+    [SerializeField] private Sprite key;
 
     public List<Image> listIcons = new List<Image>();
 
@@ -77,9 +78,13 @@ public class IconManager : MonoBehaviour
                 {
                     itemManager.Battery();
                 }
+                else if (listIcons[iconeSelectNum].sprite == key)
+                {
+                    itemManager.Key();
+                }
 
 
-                    listIcons[iconeSelectNum].sprite = blank;
+                listIcons[iconeSelectNum].sprite = blank;
                 blank.name = "Blank";
                 num--;
                 num = Mathf.Clamp(num, 0, 4);
@@ -104,6 +109,19 @@ public class IconManager : MonoBehaviour
             }
         }
 
+    }
+
+    public void RemoveKey(int numInList)
+    {
+        listIcons[numInList].sprite = blank;
+        blank.name = "Blank";
+        num--;
+        num = Mathf.Clamp(num, 0, 4);
+        blankCounter++;
+
+        SpriteSorter();
+
+        _InventorySystem.objectCounter -= 1;
     }
 
     public void SpriteSorter()
