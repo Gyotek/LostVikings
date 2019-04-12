@@ -12,38 +12,6 @@ public class EnemyMeleeBehavior : MonoBehaviour
     [SerializeField] float agentSpeed;
     [SerializeField] bool active;
 
-
-    // Update is called once per frame
-    /*void Update()
-    {
-        //transform.Translate(Vector2.right * speed * Time.deltaTime);
-
-        rigidBody.velocity = Vector2.right * speed;
-
-        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, raycastDistance);
-        if(groundInfo.collider == false)
-        {
-            if (movingRight == true)
-            {
-                transform.eulerAngles = new Vector3(0, -180, 0);
-                movingRight = false;
-            }
-
-            else
-            {
-                transform.eulerAngles = new Vector3(0, 0, 0);
-                movingRight = true;
-            }
-        }
-
-        Debug.DrawRay(groundDetection.position, Vector2.down * raycastDistance);
-
-        if (playerInRange == true)
-        {
-            Debug.Log("I see an enemy!");
-        }
-    } */
-
     private void Update()
     {
         if (active) Movement();
@@ -58,11 +26,18 @@ public class EnemyMeleeBehavior : MonoBehaviour
         {
             goRight = true;
             index = 1;
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
         else if (index == waypoints.Length)
         {
             goRight = false;
             index = waypoints.Length - 2;
+            transform.eulerAngles = new Vector3(0, -180, 0);
+        }
+
+        if (playerInRange == true)
+        {
+            Debug.Log("I see an enemy!");
         }
     }
 
