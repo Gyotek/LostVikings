@@ -346,6 +346,7 @@ MonoBehaviour:
   offsetBoxX: 0.19
   offsetBoxY: 0.56
   xJoystick: 0
+  goingRight: 0
   isGroundedLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -2287,6 +2288,7 @@ MonoBehaviour:
   battery: {fileID: 0}
   nuke: {fileID: 0}
   key: {fileID: 0}
+  keyRed: {fileID: 0}
   listIcons:
   - {fileID: 326448856}
   - {fileID: 676089866}
@@ -2471,6 +2473,7 @@ MonoBehaviour:
   battery: {fileID: 0}
   nuke: {fileID: 0}
   key: {fileID: 0}
+  keyRed: {fileID: 0}
   listIcons:
   - {fileID: 1808369477}
   - {fileID: 500798560}
@@ -4509,6 +4512,7 @@ MonoBehaviour:
     type: 3}
   keyPrefab: {fileID: 8956436128712214519, guid: bfc2899ad053f9a42821dbebdf557b28,
     type: 3}
+  keyRedPrefab: {fileID: 0}
   olaf: {fileID: 41143345}
   erik: {fileID: 803754686}
   baleog: {fileID: 1003914202}
@@ -4716,6 +4720,7 @@ MonoBehaviour:
   offsetBoxX: 0.03
   offsetBoxY: 0.33
   xJoystick: 0
+  goingRight: 0
   isGroundedLayer:
     serializedVersion: 2
     m_Bits: 2560
@@ -4739,6 +4744,8 @@ MonoBehaviour:
   thrust: 7
   isStunned: 0
   stunDelay: 1
+  mySprite: {fileID: 0}
+  isRusing: 0
 --- !u!114 &803754693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5648,6 +5655,7 @@ MonoBehaviour:
   battery: {fileID: 0}
   nuke: {fileID: 0}
   key: {fileID: 0}
+  keyRed: {fileID: 0}
   listIcons:
   - {fileID: 1904013787}
   - {fileID: 1026591112}
@@ -6033,6 +6041,7 @@ MonoBehaviour:
   offsetBoxX: 0.27
   offsetBoxY: 0.35
   xJoystick: 0
+  goingRight: 0
   isGroundedLayer:
     serializedVersion: 2
     m_Bits: 2560
@@ -6051,14 +6060,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baleogController: {fileID: 1003914207}
+  bastionSprite: {fileID: 0}
+  bastionAttackingSprite: {fileID: 0}
   thisPosition: {x: 0, y: 0, z: 0}
-  arrow: {fileID: 3280152765837996679, guid: 906ec62750384b24a9db0e874e46cc19, type: 3}
+  arrowLeft: {fileID: 0}
+  arrowRight: {fileID: 0}
   arrowCoolDown: 1.5
   canShoot: 1
   canHit: 1
   swordCoolDown: 1
   swordDamage: 1
   swordCollision: {fileID: 525182274}
+  mySprite: {fileID: 0}
 --- !u!114 &1003914209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16886,6 +16899,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   olafController: {fileID: 41143348}
   rb: {fileID: 41143347}
+  shieldUpSprite: {fileID: 0}
+  shieldDownSprite: {fileID: 0}
+  mySprite: {fileID: 0}
+  colRight: {fileID: 0}
+  colLeft: {fileID: 0}
+  colUp: {fileID: 0}
 --- !u!95 &1693099509
 Animator:
   serializedVersion: 3
@@ -18096,8 +18115,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -320, y: -210.1282}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -295.13, y: 105.33}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1947093801
 MonoBehaviour:
@@ -18112,7 +18131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -18121,18 +18140,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 34
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 0
+    m_MinSize: 0
+    m_MaxSize: 44
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Timer : '
+  m_Text: 'Timer : XX'
 --- !u!222 &1947093802
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19007,6 +19026,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5758417398432982928, guid: 0101c8668a85dcc419e41d35a96e79f2,
+        type: 3}
+      propertyPath: TimerText
+      value: 
+      objectReference: {fileID: 1947093801}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0101c8668a85dcc419e41d35a96e79f2, type: 3}
 --- !u!1001 &7719168432620933094
