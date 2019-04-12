@@ -15,25 +15,10 @@ public class SelectionSystem : MonoBehaviour
     //   1 = Erik
     //   2 = Baleog
 
-
-    // Start
-    void Start()
-    {
-        
-    }
-
-    // Update
-    void Update()
-    {
-        
-    }
-
-
     public void Selection()
     {
         if(Input.GetKeyDown("joystick 1 button 3") && charactersList.Count > 1)
-        {
-            
+        {         
             if(index > charactersList.Count)
             {
                 index = 0;
@@ -42,21 +27,6 @@ public class SelectionSystem : MonoBehaviour
             {
                 index++;
             }
-
-            if(charactersList[index].tag == "Olaf")
-            {
-
-            }
-            else if(charactersList[index].tag == "Olaf")
-            {
-
-            }
-            else if(charactersList[index].tag == "Olaf")
-            {
-
-            }
         }
-
-
     }
 }

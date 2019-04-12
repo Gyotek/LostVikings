@@ -23,7 +23,6 @@ public class IconManager : MonoBehaviour
     public InventorySystem _InventorySystem;
 
     public Sprite blank;
-    private Image imageBlank;
 
     private int iconeSelectNum;
 
@@ -34,7 +33,12 @@ public class IconManager : MonoBehaviour
     {
         num = 0;
         iconName = "Icon"+num;
-        imageBlank.sprite = blank;
+
+        foreach(Image im in listIcons)
+        {
+            im.sprite = blank;
+        }
+
         iconeSelectNum = 0;
     }
 

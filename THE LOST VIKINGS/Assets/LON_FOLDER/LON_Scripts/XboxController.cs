@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using UnityEngine.UI;
 
 public class XboxController : MonoBehaviour
 {
@@ -13,6 +12,15 @@ public class XboxController : MonoBehaviour
     public bool canClimb;
 
     public int hp = 3;
+    public int deathCounter = 0;
+
+    public GameObject gameOverScreen;
+    public Animation gameOverAnimation;
+
+    [SerializeField]
+    private bool olafDeadBeforeErik = false;
+
+    public CinemachineVirtualCamera thisPlayerCamera;
 
     public List<GameObject> pvImageList = new List<GameObject>();
 
@@ -232,33 +240,64 @@ public class XboxController : MonoBehaviour
             foreach(GameObject go in charactersList)
             {
                 XboxController xc = go.GetComponent<XboxController>();
+                xc.deathCounter++;
+
                 if(go != this.gameObject)
                 {
                     if (this.gameObject.tag == "Olaf")
                     {
+                        xc.olafDeadBeforeErik = true;
                         xc.cameraList.Remove(cameraList[0]);
                         xc.rbList.Remove(rbList[0]);
+                        xc.index = 0;
                     }
                     else if (this.gameObject.tag == "Erik")
                     {
-                        xc.cameraList.Remove(cameraList[1]);
-                        xc.rbList.Remove(rbList[1]);
+                        if(olafDeadBeforeErik == true)
+                        {
+                            xc.cameraList[0].enabled = false;
+                            xc.cameraList.Remove(cameraList[0]);
+                            xc.rbList.Remove(rbList[0]);
+                            xc.index = 0;
+                        }
+                        else if(olafDeadBeforeErik == false)
+                        {
+                            xc.cameraList[1].enabled = false;
+                            xc.cameraList.Remove(cameraList[1]);
+                            xc.rbList.Remove(rbList[1]);
+                            xc.index = 0;
+                        }
+
                     }
                     else if (this.gameObject.tag == "Baleog")
                     {
-                        xc.cameraList.Remove(cameraList[2]);
-                        xc.rbList.Remove(rbList[2]);
+                        xc.cameraList[2-deathCounter].enabled = false;
+                        xc.cameraList.Remove(cameraList[2-deathCounter]);
+                        xc.rbList.Remove(rbList[2-deathCounter]);
+                        xc.index = 0;
                     }
 
+                    this.thisPlayerCamera.gameObject.SetActive(false);
                     xc.charactersList.Remove(this.gameObject);
                     xc.controllerScriptList.Remove(this);
                 }
 
             }
 
-            Destroy(this.gameObject);
+            if(deathCounter == 3)
+            {
+                LaunchUIGameOver();
+            }
 
-        } //IL FAUT LE CAMERA FOLLOW
+            this.gameObject.SetActive(false);
+
+        }
+    }
+
+    public void LaunchUIGameOver()
+    {
+        gameOverScreen.SetActive(true);
+        gameOverAnimation.Play();
     }
 
     // POUR FAIRE LES DÉPLACEMENTS AVEC DES FORCES :     //rb.AddForce(transform.right * speed (entre 0 et 1) , ForceMode2D.Impulse);
