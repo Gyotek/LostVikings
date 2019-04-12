@@ -1541,7 +1541,7 @@ RectTransform:
   m_Children:
   - {fileID: 415822431}
   m_Father: {fileID: 1729245606}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -3657,7 +3657,7 @@ RectTransform:
   m_Children:
   - {fileID: 1206552443}
   m_Father: {fileID: 1729245606}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -3889,7 +3889,7 @@ GameObject:
   - component: {fileID: 1026591112}
   m_Layer: 5
   m_Name: Icon1
-  m_TagString: Untagged
+  m_TagString: Erik
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4914,7 +4914,7 @@ GameObject:
   - component: {fileID: 1515013595}
   m_Layer: 5
   m_Name: Icon2
-  m_TagString: Untagged
+  m_TagString: Erik
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12640,7 +12640,7 @@ RectTransform:
   m_Children:
   - {fileID: 1676310550}
   m_Father: {fileID: 1729245606}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -12881,7 +12881,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1673065042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.22, y: 3.85, z: -5.0001907}
+  m_LocalPosition: {x: 11.27, y: 3.85, z: -5.0001907}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13116,7 +13116,7 @@ GameObject:
   - component: {fileID: 1720630513}
   m_Layer: 5
   m_Name: Icon3
-  m_TagString: Untagged
+  m_TagString: Erik
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13284,10 +13284,10 @@ RectTransform:
   - {fileID: 1736435069}
   - {fileID: 416594530}
   - {fileID: 571178933}
+  - {fileID: 2099213560}
   - {fileID: 1000990186}
   - {fileID: 264072994}
   - {fileID: 1660739590}
-  - {fileID: 2099213560}
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13531,7 +13531,7 @@ GameObject:
   - component: {fileID: 1904013787}
   m_Layer: 5
   m_Name: Icon0
-  m_TagString: Untagged
+  m_TagString: Erik
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13753,16 +13753,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2099213559}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.0865, y: 1.0865, z: 1.0865}
   m_Children: []
   m_Father: {fileID: 1729245606}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -367.39, y: 190.9}
+  m_AnchoredPosition: {x: -367.39008, y: 190.90002}
   m_SizeDelta: {x: -776.78, y: -426.195}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2099213561
@@ -13778,13 +13778,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iconManager: {fileID: 331809132}
+  _iconManagerOlaf: {fileID: 331809132}
+  _iconManagerErik: {fileID: 931625959}
+  _iconManagerBaleog: {fileID: 358785710}
   _inventorySystem: {fileID: 1003914209}
   iconeSelected: {fileID: 0}
-  iconeName: 
   icone0: {fileID: 326448854}
   icone1: {fileID: 676089864}
   icone2: {fileID: 702783319}
   icone3: {fileID: 1373313126}
+  olaf: {fileID: 41143345}
+  erik: {fileID: 803754686}
+  baleog: {fileID: 1003914202}
 --- !u!114 &2099213562
 MonoBehaviour:
   m_ObjectHideFlags: 0
