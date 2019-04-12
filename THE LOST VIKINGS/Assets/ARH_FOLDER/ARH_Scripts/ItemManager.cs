@@ -13,11 +13,11 @@ public class ItemManager : MonoBehaviour
     public Collider2D nukeCollider;
     private bool isNuking = false;
 
-    [SerializeField] private GameObject bomb;
+    public GameObject bombPrefab;
 
-    [SerializeField] private GameObject olaf;
-    [SerializeField] private GameObject erik;
-    [SerializeField] private GameObject baleog;
+    public GameObject olaf;
+    public GameObject erik;
+    public GameObject baleog;
 
     // Start is called before the first frame update
     void Start()
@@ -40,15 +40,15 @@ public class ItemManager : MonoBehaviour
     {
         if (FindObjectOfType<XboxController>().index == 0)
         {
-            Instantiate(bomb, olaf.transform);
+            Instantiate(bombPrefab, olaf.transform.position, olaf.transform.rotation);
         }
         else if (FindObjectOfType<XboxController>().index == 1)
         {
-            Instantiate(bomb, erik.transform);
+            Instantiate(bombPrefab, erik.transform.position, erik.transform.rotation);
         }
         else if (FindObjectOfType<XboxController>().index == 2)
         {
-            Instantiate(bomb, baleog.transform);
+            Instantiate(bombPrefab, baleog.transform.position, baleog.transform.rotation);
         }
     }
 
@@ -80,10 +80,6 @@ public class ItemManager : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-
-        //if(listIcons[3].sprite == "bomb") ItemManager.Bomb();
-
-
         if (isNuking == true || other.tag == "Enemy")
         {
             Destroy(other.gameObject);

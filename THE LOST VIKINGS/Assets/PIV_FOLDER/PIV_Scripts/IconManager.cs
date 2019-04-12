@@ -5,6 +5,13 @@ using UnityEngine.UI;
 
 public class IconManager : MonoBehaviour
 {
+    
+    public ItemManager itemManager;
+
+    [SerializeField] private Sprite bomb;
+    [SerializeField] private Sprite battery;
+    [SerializeField] private Sprite nuke;
+
     public List<Image> listIcons = new List<Image>();
 
     public XboxController myCurrentPlayer;
@@ -23,7 +30,6 @@ public class IconManager : MonoBehaviour
     public InventorySystem _InventorySystem;
 
     public Sprite blank;
-    private Image imageBlank;
 
     public int iconeSelectNum;
 
@@ -34,7 +40,10 @@ public class IconManager : MonoBehaviour
     {
         num = 0;
         iconName = "Icon"+num;
-        imageBlank.sprite = blank;
+        foreach(Image im in listIcons)
+        {
+            im.sprite = blank;
+        }
         iconeSelectNum = 0;
     }
 
@@ -56,7 +65,21 @@ public class IconManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                listIcons[iconeSelectNum].sprite = blank;
+                if (listIcons[iconeSelectNum].sprite == bomb)
+                {
+                    itemManager.Bomb();
+                }
+                else if (listIcons[iconeSelectNum].sprite == nuke)
+                {
+                    itemManager.Nuke();
+                }
+                else if (listIcons[iconeSelectNum].sprite == battery)
+                {
+                    itemManager.Battery();
+                }
+
+
+                    listIcons[iconeSelectNum].sprite = blank;
                 blank.name = "Blank";
                 num--;
                 num = Mathf.Clamp(num, 0, 4);

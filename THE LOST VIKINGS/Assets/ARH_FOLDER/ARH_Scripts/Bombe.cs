@@ -20,9 +20,8 @@ public class Bombe : MonoBehaviour
 
     IEnumerator Exploding()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         explode = true;
-        Debug.Log("KILL ALL");
         Destroy(this.gameObject);
     }
 
