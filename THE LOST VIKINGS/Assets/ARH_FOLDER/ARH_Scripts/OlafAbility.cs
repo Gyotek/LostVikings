@@ -51,13 +51,13 @@ public class OlafAbility : MonoBehaviour
             }*/
 
             animShield.SetBool("shieldIsUp", shieldIsUp);
-            if (Input.GetKeyDown("joystick 1 button 2") && !shieldIsUp)
+            if ((Input.GetKeyDown("joystick 1 button 2") || Input.GetKeyDown("return")) && !shieldIsUp)
             {
                 shieldIsUp = true;
 
                 Physics2D.IgnoreLayerCollision(8, 11, false);
             }
-            else if (Input.GetKeyDown("joystick 1 button 2") && shieldIsUp)
+            else if (Input.GetKeyDown("joystick 1 button 2") || Input.GetKeyDown("return") && shieldIsUp)
             {
                 shieldIsUp = false;
                 Physics2D.IgnoreLayerCollision(8, 11);

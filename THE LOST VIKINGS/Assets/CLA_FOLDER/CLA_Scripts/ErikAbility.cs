@@ -26,7 +26,7 @@ public class ErikAbility : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (controller.thisIsSelected == true && Input.GetKeyDown("joystick 1 button 2"))
+        if (controller.thisIsSelected == true && Input.GetKeyDown("joystick 1 button 2") || Input.GetKeyDown("return"))
         {
             if (controller.isGrounded == true && controller.canClimb == false)
             {
