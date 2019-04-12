@@ -15,6 +15,7 @@ public class ItemManager : MonoBehaviour
 
     public GameObject bombPrefab;
     public GameObject keyPrefab;
+    public GameObject keyRedPrefab;
 
     public GameObject olaf;
     public GameObject erik;
@@ -57,6 +58,22 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    public void KeyRed()
+    {
+        if (olafController.thisIsSelected == true)
+        {
+            Instantiate(keyRedPrefab, olaf.transform.position, olaf.transform.rotation);
+        }
+        else if (erikController.thisIsSelected == true)
+        {
+            Instantiate(keyRedPrefab, erik.transform.position, erik.transform.rotation);
+        }
+        else if (baleogController.thisIsSelected == true)
+        {
+            Instantiate(keyRedPrefab, baleog.transform.position, baleog.transform.rotation);
+        }
+    }
+
     public void Bomb()
     {
         if (olafController.thisIsSelected == true)
@@ -77,15 +94,15 @@ public class ItemManager : MonoBehaviour
     {
         if(olafController.thisIsSelected == true)
         {
-            //Redonne une life a Olaf
+            olafController.PlayerHeal();
         }
         else if (erikController.thisIsSelected == true)
         {
-            //Redonne une life a Erik
+            erikController.PlayerHeal();
         }
         else if (baleogController.thisIsSelected == true)
         {
-            //Redonne une life a Olaf
+            baleogController.PlayerHeal();
         }
 
     }

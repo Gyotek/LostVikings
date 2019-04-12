@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArrowBehavior : MonoBehaviour
+public class ArrowBehaviorLeft : MonoBehaviour
 {
     [SerializeField]
     private float speed = 7;
@@ -17,7 +17,7 @@ public class ArrowBehavior : MonoBehaviour
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        rigidBody.AddForce(transform.right * speed, ForceMode2D.Force);
+        rigidBody.AddForce(transform.right * -speed, ForceMode2D.Force);
     }
 
     private void OnBecameInvisible()
@@ -33,7 +33,7 @@ public class ArrowBehavior : MonoBehaviour
     private IEnumerator DestroyDelay()
     {
         yield return new WaitForSeconds(destroyCoolDown);
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
     
     private void OnCollisionEnter2D(Collision2D collision)

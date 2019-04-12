@@ -27,7 +27,7 @@ public class Bombe : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (explode = true && other.tag == "enemy" || other.tag == "destructible")
+        if (explode = true && other.tag == "Enemy")
         {
             Destroy(other.gameObject);
         }

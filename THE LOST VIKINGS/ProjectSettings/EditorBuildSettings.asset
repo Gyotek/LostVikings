@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/_Scenes/PIV_Menu.unity
     guid: 80f7f4018a16a7a46af490b31640ac6d
   - enabled: 1
-    path: Assets/_Scenes/LON_Scene 1.unity
-    guid: 34fea4ec26212f84fbd718478436e5e1
+    path: Assets/_Scenes/ARH_Scene.unity
+    guid: 6e17af99180c127469bf308f955a3134
+  - enabled: 1
+    path: Assets/_Scenes/ARH_Winning.unity
+    guid: ce41c21a23fd29d4983186cf266010a2
   m_configObjects: {}

@@ -17,6 +17,7 @@ public class XboxController : MonoBehaviour
     public GameObject gameOverScreen;
     public Animation gameOverAnimation;
 
+
     [SerializeField]
     private bool olafDeadBeforeErik = false;
 
@@ -38,6 +39,7 @@ public class XboxController : MonoBehaviour
     public float offsetBoxY;
 
     public float xJoystick;
+    public bool goingRight;
 
     public LayerMask isGroundedLayer;
 
@@ -77,10 +79,23 @@ public class XboxController : MonoBehaviour
         CameraFocus();
         xJoystick = Input.GetAxis("Horizontal");
 
-        if(Input.GetKeyDown(KeyCode.L) && thisIsSelected == true)
+        if (xJoystick < 0 && goingRight)
+        {
+            goingRight = false;
+
+
+        }
+        else if (xJoystick > 0 && !goingRight)
+        {
+            goingRight = true;
+        }
+            
+
+
+        /*if(Input.GetKeyDown(KeyCode.L) && thisIsSelected == true)
         {
             PlayerTakeDamages();
-        }
+        }*/
     }
 
     // Fixed Update
@@ -232,6 +247,12 @@ public class XboxController : MonoBehaviour
     {
         this.hp--;
         pvImageList[hp].SetActive(false);    
+    }
+
+    public void PlayerHeal()
+    {
+        this.hp++;
+        pvImageList[hp-1].SetActive(true);
     }
 
     public void DeathTest()

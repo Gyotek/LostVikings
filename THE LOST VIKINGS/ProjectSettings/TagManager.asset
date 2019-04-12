@@ -12,6 +12,7 @@ TagManager:
   - Object
   - Fleche
   - Arrow
+  - Shield
   layers:
   - Default
   - TransparentFX

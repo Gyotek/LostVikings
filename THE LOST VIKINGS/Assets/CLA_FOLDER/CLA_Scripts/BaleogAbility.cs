@@ -6,11 +6,17 @@ public class BaleogAbility : MonoBehaviour
 {
     public XboxController baleogController;
 
+    public Sprite bastionSprite;
+    public Sprite bastionAttackingSprite;
+
     [SerializeField]
     private Vector3 thisPosition;
 
     [SerializeField]
-    private GameObject arrow;
+    private GameObject arrowLeft;
+
+    [SerializeField]
+    private GameObject arrowRight;
 
     [SerializeField]
     private float arrowCoolDown = 1.5f;
@@ -28,6 +34,7 @@ public class BaleogAbility : MonoBehaviour
     private int swordDamage = 1;
 
     public Collider2D swordCollision;
+    public SpriteRenderer mySprite;
 
     private void Awake()
     {
@@ -41,7 +48,10 @@ public class BaleogAbility : MonoBehaviour
 
         if ((Input.GetKeyDown("return") || Input.GetKeyDown(KeyCode.Joystick1Button0)) && baleogController.thisIsSelected == true && canShoot == true)
         {
-            Instantiate(arrow, thisPosition, Quaternion.identity);
+            if (mySprite.flipX == false)
+                Instantiate(arrowRight, thisPosition, Quaternion.identity);
+            if (mySprite.flipX == true)
+                Instantiate(arrowLeft, thisPosition, Quaternion.identity);
             canShoot = false;
             StartCoroutine(ArrowCoolDown());
         }
@@ -50,9 +60,33 @@ public class BaleogAbility : MonoBehaviour
         {
             canHit = false;
             StartCoroutine(SwordCoolDown());
+            StartCoroutine(AttackSprite());
             swordCollision.enabled = true;
-            Debug.Log("Slash!");
         }
+
+        if (baleogController.thisIsSelected == true)
+            Flip();
+    }
+
+    void Flip()
+    {
+        if (baleogController.goingRight && mySprite.flipX)
+        {
+            mySprite.flipX = false;
+
+
+        }
+        else if (!baleogController.goingRight && !mySprite.flipX)
+        {
+            mySprite.flipX = true;
+        }
+    }
+
+    private IEnumerator AttackSprite()
+    {
+        mySprite.sprite = bastionAttackingSprite;
+        yield return new WaitForSeconds(0.1f);
+        mySprite.sprite = bastionSprite;
     }
 
     private IEnumerator ArrowCoolDown()

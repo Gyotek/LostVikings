@@ -19,7 +19,7 @@ using UnityEngine.SceneManagement;
 
     public void launchScene()
     {
-        SceneManager.LoadScene("LON_Scene 1");
+        SceneManager.LoadScene("ARH_Scene");
         Debug.Log("Scene loaded");
     }
 
