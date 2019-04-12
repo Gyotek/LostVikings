@@ -9,8 +9,10 @@ public class EnemyMeleeBehavior : MonoBehaviour
     [SerializeField] Transform[] waypoints;
     [SerializeField] int index;
     [SerializeField] bool goRight =true;
-    [SerializeField] float agentSpeed;
+    public float agentSpeed;
     [SerializeField] bool active;
+
+    public int hp = 3;
 
     private void Update()
     {
@@ -35,9 +37,9 @@ public class EnemyMeleeBehavior : MonoBehaviour
             transform.eulerAngles = new Vector3(0, -180, 0);
         }
 
-        if (playerInRange == true)
+        if (hp <= 0)
         {
-            Debug.Log("I see an enemy!");
+            Destroy(this.gameObject);
         }
     }
 
@@ -46,5 +48,10 @@ public class EnemyMeleeBehavior : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, waypoints[index].position, agentSpeed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, waypoints[index].position) < 0.1f) nextWaypoint();
+    }
+
+    public void LoseHP(int damage)
+    {
+        hp -= damage;
     }
 }
